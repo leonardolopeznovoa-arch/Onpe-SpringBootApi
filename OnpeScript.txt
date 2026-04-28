@@ -1,0 +1,60 @@
+Tablas (2): (Actas,Partipacion)
+
+Rutas (10):
+GET http://localhost:8080/api/participacion
+GET http://localhost:8080/api/actas
+POST http://localhost:8080/api/actas
+DELETE http://localhost:8080/api/actas/{id}
+GET http://localhost:8080/api/participacion/{id}
+POST http://localhost:8080/api/participacion
+PUT http://localhost:8080/api/participacion/{id}
+DELETE http://localhost:808/api/participacion/{id}
+
+
+Script MySQL:
+
+CREATE DATABASE IF NOT EXISTS db_onpe;
+USE db_onpe;
+
+CREATE TABLE IF NOT EXISTS acta (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    mesa VARCHAR(20) NOT NULL,
+    votos_validos INT DEFAULT 0,
+    votos_impugnados INT DEFAULT 0
+);
+
+
+CREATE TABLE IF NOT EXISTS participacion (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    local VARCHAR(255) NOT NULL,
+    total_electores INT DEFAULT 0
+);
+
+INSERT INTO acta (mesa, votos_validos, votos_impugnados) VALUES ('123456', 300, 5);
+INSERT INTO participacion (local, total_electores) VALUES ('Estadio Nacional', 5000);
+
+
+SELECT * FROM acta;
+SELECT * FROM participacion;
+
+Datos ejemplares para usar:
+
+USE db_onpe;
+
+INSERT INTO participacion (local, total_electores) VALUES 
+('Estadio Nacional - Cercado de Lima', 12500),
+('Universidad Nacional Mayor de San Marcos', 8400),
+('Colegio Emblemático Alfonso Ugarte - San Isidro', 3200),
+('IE Juana Alarco de Dammert - Miraflores', 4500),
+('Complejo Deportivo IPD - San Juan de Miraflores', 6700);
+
+INSERT INTO acta (mesa, votos_validos, votos_impugnados) VALUES 
+('042581', 285, 2),
+('042582', 290, 0),
+('089745', 150, 12),
+('012456', 240, 4),
+('033698', 215, 1),
+('099874', 198, 0);
+
+SELECT * FROM participacion;
+SELECT * FROM acta;
